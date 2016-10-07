@@ -1120,6 +1120,9 @@ class _FeedParserMixin:
     _end_feed = _end_channel
 
     def _start_image(self, attrsD):
+        if 'url' not in attrsD:
+            self.push('image', 1)
+            return
         context = self._getContext()
         if not self.inentry:
             context.setdefault('image', FeedParserDict())
